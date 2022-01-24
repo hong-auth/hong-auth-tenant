@@ -1,0 +1,11 @@
+package com.hong.dto;
+
+import com.hong.dto.data.CustomerDTO;
+import lombok.Data;
+
+@Data
+public class CustomerAddCmd{
+
+    private CustomerDTO customerDTO;
+
+}
