@@ -19,7 +19,7 @@ public class TenantController {
 
     @GetMapping("")
     public PageResponse<TenantDTO> pageList(TenantPageListQry qry) {
-        return PageResponse.buildSuccess();
+        return tenantService.pageList(qry);
     }
 
     @GetMapping("/{id}")

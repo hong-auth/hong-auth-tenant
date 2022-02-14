@@ -10,6 +10,7 @@ import com.hong.dto.data.TenantDTO;
 import com.hong.tenant.executor.TenantAddCmdExe;
 import com.hong.tenant.executor.TenantDeleteCmdExe;
 import com.hong.tenant.executor.TenantUpdateCmdExe;
+import com.hong.tenant.executor.query.TenantPageListQryExe;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class TenantServiceImpl implements TenantServiceI {
     private final TenantAddCmdExe tenantAddCmdExe;
     private final TenantUpdateCmdExe tenantUpdateCmdExe;
     private final TenantDeleteCmdExe tenantDeleteCmdExe;
+    private final TenantPageListQryExe tenantPageListQryExe;
 
     /**
      * 添加租户
@@ -65,7 +67,7 @@ public class TenantServiceImpl implements TenantServiceI {
      */
     @Override
     public PageResponse<TenantDTO> pageList(TenantPageListQry qry) {
-        return null;
+        return tenantPageListQryExe.execute(qry);
     }
 
     /**
