@@ -10,6 +10,7 @@ import com.hong.dto.data.TenantDTO;
 import com.hong.tenant.executor.TenantAddCmdExe;
 import com.hong.tenant.executor.TenantDeleteCmdExe;
 import com.hong.tenant.executor.TenantUpdateCmdExe;
+import com.hong.tenant.executor.query.TenantFindByQryExe;
 import com.hong.tenant.executor.query.TenantPageListQryExe;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,12 +26,10 @@ public class TenantServiceImpl implements TenantServiceI {
     private final TenantUpdateCmdExe tenantUpdateCmdExe;
     private final TenantDeleteCmdExe tenantDeleteCmdExe;
     private final TenantPageListQryExe tenantPageListQryExe;
+    private final TenantFindByQryExe tenantFindByQryExe;
 
     /**
      * 添加租户
-     *
-     * @param cmd
-     * @return
      */
     @Override
     public Response addTenant(TenantAddCmd cmd) {
@@ -39,9 +38,6 @@ public class TenantServiceImpl implements TenantServiceI {
 
     /**
      * 更新租户信息
-     *
-     * @param cmd
-     * @return
      */
     @Override
     public Response updateTenant(TenantUpdateCmd cmd) {
@@ -50,9 +46,6 @@ public class TenantServiceImpl implements TenantServiceI {
 
     /**
      * 删除租户
-     *
-     * @param cmd
-     * @return
      */
     @Override
     public Response deleteTenant(TenantDeleteCmd cmd) {
@@ -61,9 +54,6 @@ public class TenantServiceImpl implements TenantServiceI {
 
     /**
      * 分页
-     *
-     * @param qry
-     * @return
      */
     @Override
     public PageResponse<TenantDTO> pageList(TenantPageListQry qry) {
@@ -72,12 +62,9 @@ public class TenantServiceImpl implements TenantServiceI {
 
     /**
      * 获取
-     *
-     * @param qry
-     * @return
      */
     @Override
     public SingleResponse<TenantDTO> findById(TenantFindByQry qry) {
-        return null;
+        return tenantFindByQryExe.execute(qry);
     }
 }

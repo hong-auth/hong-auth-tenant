@@ -24,7 +24,7 @@ public class TenantController {
 
     @GetMapping("/{id}")
     public SingleResponse<TenantDTO> findById(TenantFindByQry qry) {
-        return SingleResponse.buildSuccess();
+        return tenantService.findById(qry);
     }
 
     @PostMapping("")

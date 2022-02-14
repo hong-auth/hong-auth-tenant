@@ -9,10 +9,12 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface TenantRepository extends PagingAndSortingRepository<TenantDO, String> {
     /**
-     * @param name
-     * @param code
-     * @param status
-     * @return
+     * 分页
      */
     Page<TenantDO> findByNameOrCodeOrStatus(String name, String code, Integer status, Pageable pageable);
+
+    /**
+     * 查找
+     */
+    TenantDO findByIdOrCode(String id, String code);
 }
