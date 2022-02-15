@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author chenhongbo
  */
-@RestController("/tenant")
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/tenant")
 public class TenantController {
     private final TenantServiceI tenantService;
 
@@ -22,18 +23,24 @@ public class TenantController {
         return tenantService.pageList(qry);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/")
     public SingleResponse<TenantDTO> findById(TenantFindByQry qry) {
         return tenantService.findById(qry);
     }
 
+    @GetMapping("/{id}")
+    public SingleResponse<TenantDTO> findById(@PathVariable("id") String id, TenantFindByQry qry) {
+        qry.setId(id);
+        return tenantService.findById(qry);
+    }
+
     @PostMapping("")
-    public Response addTenant(TenantAddCmd cmd) {
+    public Response addTenant(@RequestBody TenantAddCmd cmd) {
         return tenantService.addTenant(cmd);
     }
 
     @PutMapping("/{id}")
-    public Response updateTenant(@PathVariable("id") String id, TenantUpdateCmd cmd) {
+    public Response updateTenant(@PathVariable("id") String id, @RequestBody TenantUpdateCmd cmd) {
         cmd.getTenantDTO().setId(id);
         return tenantService.updateTenant(cmd);
     }
