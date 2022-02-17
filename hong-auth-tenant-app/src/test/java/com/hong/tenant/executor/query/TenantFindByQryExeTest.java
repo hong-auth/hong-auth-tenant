@@ -40,7 +40,7 @@ public class TenantFindByQryExeTest {
 
         TenantDO tenantDO = new TenantDO();
         tenantDO.setCode(code);
-        Mockito.when(tenantRepository.findOne(Example.of(tenantDO)))
+        Mockito.when(tenantRepository.findOne(Mockito.any()))
                 .thenReturn(Optional.of(tenantDO));
 
         TenantFindByQry qry = new TenantFindByQry();
